@@ -13,8 +13,7 @@ public class TextFileUtils {
 			dir.mkdir();
 		}
 		fw = new FileWriter(dir+"/Result.txt");
-		outputWrite("Result of DB to Excel Comparison");
-		outputWrite("RowNumber | Column | DB Value | Excel Value |");
+		outputWrite("#---Result of DB to Excel Comparison---#\n");
 	}
 	
 	public static void outputWrite(String message) throws Exception{

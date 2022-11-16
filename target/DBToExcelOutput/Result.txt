@@ -1,7 +1,15 @@
-Result of DB to Excel Comparison
-RowNumber | Column | DB Value | Excel Value |
-Utility to Compare DB values with Excel Data
+#---Result of DB to Excel Comparison---#
 
+
+Column Comparison : Column Count in DataBase Output and Excel Data is Same
+Number of Columns : 3
+
+Row Comparison : Row Count in DataBase Output and Excel Data is Same
+Number of Rows : 5
+
+ Proceeding with the Data Comparison : 
+
+RowNumber | Column | DB Value | Excel Value |
     3     |   2    | Ross Taylor | Ross Taylor new
     4     |   3    | 27 | 28
     5     |   2    | Jack Ryan | Jack Ryan 

@@ -3,6 +3,8 @@ package stepDefinitions;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
+import cucumber.api.Scenario;
+import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -19,7 +21,6 @@ import pages.Recruitment;
 import pages.TimePage;
 import utilities.CommonMethods;
 import utilities.DriverUtils;
-import utilities.LoggerUtils;
 
 public class OrangeHRMStepDef {
 	WebDriver driver;
@@ -35,7 +36,13 @@ public class OrangeHRMStepDef {
 	Recruitment recruitment;
 	TimePage timePage;
 	CommonMethods commonmethods;
-	static final Logger logger = LogManager.getLogger(stepDefinitions.OrangeHRMStepDef.class);
+	Scenario scenario;
+	final Logger logger = LogManager.getLogger(stepDefinitions.OrangeHRMStepDef.class);
+	
+	@Before
+	public void before(Scenario scenario) {
+		this.scenario = scenario;
+	}
 	
 	@Given("^User Opens the required application$")
 	public void user_Opens_the_required_application() throws Throwable {
@@ -53,15 +60,12 @@ public class OrangeHRMStepDef {
 	    timePage = new TimePage(driver);
 	    commonmethods = new CommonMethods(driver);
 	    logger.info("Test Started");
-	    //loggerutils.write("Start the Scenario");
-	    //loggerutils.write("URL Opened Successfully in the browser");
 	}
 
 	@When("^User logs in the application$")
 	public void user_logs_in_the_application() throws Throwable {
 		logger.info("Step Started : user Logs in the Application");
 	    loginpage.login();
-	    //loggerutils.write("Step Passed : user Logs in the Application");
 	}
 
 	@Then("^Verify User is on DashBoard$")

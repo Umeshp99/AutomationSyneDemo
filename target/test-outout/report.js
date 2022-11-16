@@ -7,7 +7,7 @@ formatter.feature({
   "keyword": "Feature"
 });
 formatter.before({
-  "duration": 206600,
+  "duration": 1269141100,
   "status": "passed"
 });
 formatter.scenario({
@@ -57,7 +57,7 @@ formatter.match({
   "location": "DBtoExcelStepDefinition.user_Connects_to_the_required_DataBase()"
 });
 formatter.result({
-  "duration": 1482588400,
+  "duration": 1209108600,
   "status": "passed"
 });
 formatter.match({
@@ -70,7 +70,7 @@ formatter.match({
   "location": "DBtoExcelStepDefinition.user_extracts_data_from_the_table(String)"
 });
 formatter.result({
-  "duration": 37493900,
+  "duration": 34613500,
   "status": "passed"
 });
 formatter.match({
@@ -87,35 +87,35 @@ formatter.match({
   "location": "DBtoExcelStepDefinition.intitialize_excel_and_Sheet(String,String)"
 });
 formatter.result({
-  "duration": 823674800,
+  "duration": 808558300,
   "status": "passed"
 });
 formatter.match({
   "location": "DBtoExcelStepDefinition.convert_the_Excel_in_the_required_collection()"
 });
 formatter.result({
-  "duration": 9483000,
+  "duration": 12601400,
   "status": "passed"
 });
 formatter.match({
   "location": "DBtoExcelStepDefinition.verify_that_column_count_is_same_in_DB_and_Excel()"
 });
 formatter.result({
-  "duration": 2811800,
+  "duration": 9638700,
   "status": "passed"
 });
 formatter.match({
   "location": "DBtoExcelStepDefinition.verify_that_row_count_is_same_in_DB_and_Excel()"
 });
 formatter.result({
-  "duration": 103600,
+  "duration": 156200,
   "status": "passed"
 });
 formatter.match({
   "location": "DBtoExcelStepDefinition.compares_the_DB_values_with_Excel_Data()"
 });
 formatter.result({
-  "duration": 800100,
+  "duration": 901400,
   "status": "passed"
 });
 });

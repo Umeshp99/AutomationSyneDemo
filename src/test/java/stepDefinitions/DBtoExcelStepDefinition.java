@@ -1,18 +1,7 @@
 package stepDefinitions;
 
-import java.awt.List;
-import java.io.File;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
-
 import org.testng.Assert;
-
-import cucumber.api.PendingException;
-import cucumber.api.Scenario;
-import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -23,12 +12,6 @@ import utilities.TextFileUtils;
 public class DBtoExcelStepDefinition {
 	ArrayList<String> excelPrimaryKeys = new ArrayList<String>();
 	String[][] excelData = null;
-	Scenario scenario;
-	
-	@Before
-	public void before(Scenario scenario) {
-		this.scenario = scenario;
-	}
 	
 	@Given("^User Connects to the required DataBase$")
 	public void user_Connects_to_the_required_DataBase() throws Throwable {
@@ -39,11 +22,6 @@ public class DBtoExcelStepDefinition {
 	@When("^User extracts data from the table \"([^\"]*)\"$")
 	public void user_extracts_data_from_the_table(String tableName) throws Throwable {
 	    DataBaseUtils.getTablaData(tableName);
-	}
-
-	@Then("^Compares the DB values with Excel Data$")
-	public void compares_the_DB_values_with_Excel_Data() throws Throwable {
-	    DataBaseUtils.compareData(excelPrimaryKeys, excelData);
 	}
 	
 	@Then("^intitialize excel \"([^\"]*)\" and Sheet \"([^\"]*)\"$")
@@ -59,11 +37,39 @@ public class DBtoExcelStepDefinition {
 
 	@Then("^Verify that column count is same in DB and Excel$")
 	public void verify_that_column_count_is_same_in_DB_and_Excel() throws Throwable {
-	    Assert.assertEquals(DataBaseUtils.getDBCols(), ExcelUtils.getExcelCols());
+		try {
+			Assert.assertEquals(DataBaseUtils.getDBCols(), ExcelUtils.getExcelCols());
+			TextFileUtils.outputWrite("Column Comparison : Column Count in DataBase Output and Excel Data is Same");
+			TextFileUtils.outputWrite("Number of Columns : "+ ExcelUtils.getExcelCols() + "\n");
+		} catch (Exception e) {
+			TextFileUtils.outputWrite("Column Comparison : Column Count in DataBase Output and Excel Data is Not Same");
+			TextFileUtils.outputWrite("Number of Columns in DataBase : "+ DataBaseUtils.getDBCols());
+			TextFileUtils.outputWrite("Number of Columns in Excel : "+ ExcelUtils.getExcelCols());
+			TextFileUtils.outputWrite("\nTerminating the Script due to Column count Mismatch");
+			DataBaseUtils.closeConnection();
+			System.exit(0);
+		}
+	    
 	}
 
 	@Then("^Verify that row count is same in DB and Excel$")
 	public void verify_that_row_count_is_same_in_DB_and_Excel() throws Throwable {
-	    Assert.assertEquals(DataBaseUtils.getDBRows(), ExcelUtils.getExcelRows());
+		try {
+			Assert.assertEquals(DataBaseUtils.getDBRows(), ExcelUtils.getExcelRows());
+			TextFileUtils.outputWrite("Row Comparison : Row Count in DataBase Output and Excel Data is Same");
+			TextFileUtils.outputWrite("Number of Rows : "+ ExcelUtils.getExcelRows());
+		} catch (Exception e) {
+			TextFileUtils.outputWrite("Row Comparison : Row Count in DataBase Output and Excel Data is Not Same");
+			TextFileUtils.outputWrite("Number of Rows in DataBase : "+ DataBaseUtils.getDBRows());
+			TextFileUtils.outputWrite("Number of Rows in Excel : "+ ExcelUtils.getExcelRows());
+		}
+	    
+	}
+	
+	@Then("^Compares the DB values with Excel Data$")
+	public void compares_the_DB_values_with_Excel_Data() throws Throwable {
+		TextFileUtils.outputWrite("\nProceeding with the Data Comparison : \n");
+		TextFileUtils.outputWrite("RowNumber | Column | DB Value | Excel Value |");
+	    DataBaseUtils.compareData(excelPrimaryKeys, excelData);
 	}
 }
