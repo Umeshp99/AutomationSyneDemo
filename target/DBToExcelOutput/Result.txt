@@ -1,0 +1,8 @@
+Result of DB to Excel Comparison
+RowNumber | Column | DB Value | Excel Value |
+Utility to Compare DB values with Excel Data
+
+    3     |   2    | Ross Taylor | Ross Taylor new
+    4     |   3    | 27 | 28
+    5     |   2    | Jack Ryan | Jack Ryan 
+    5     |   3    | 31 | 30
